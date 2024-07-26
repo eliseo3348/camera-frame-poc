@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Webcam from "react-webcam";
+
 
 function App() {
+  const videoConstraints = {
+    width: 640,
+    height: 360,
+    facingMode: "environment"
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div style={{ position: "absolute" }}>
+        <Webcam
+          audio={false}
+          height={360}
+          screenshotFormat="image/jpeg"
+          width={640}
+          videoConstraints={videoConstraints}
         >
-          Learn React
-        </a>
-      </header>
+          {({ getScreenshot }) => (
+            <button
+              onClick={() => {
+                const imageSrc = getScreenshot()
+              }}
+            >
+              Capture photo
+            </button>
+          )}
+        </Webcam>
+      </div>
+      <div style={{
+        background: "transparent", position: "absolute", width: "360px",
+        height: "640px"
+      }}>
+        <img src={"https://png.pngtree.com/png-vector/20230501/ourmid/pngtree-luxury-golden-rectangle-certificate-border-pattern-line-photo-frame-islamic-wedding-vector-png-image_7077586.png"} />
+      </div>
+
+
     </div>
+
+    //
   );
 }
 
